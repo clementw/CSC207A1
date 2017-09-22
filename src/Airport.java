@@ -5,14 +5,15 @@ public class Airport {
     private ArrayList flights;
 
     public Airport(String name) {
+        this.name = name;
     }
 
     public String getName() {
-        return null;
+        return name;
     }
 
-    public String toString(Flight f) {
-        return null;
+    public String toString() {
+        return "";
     }
 
     public boolean equals(Flight f) {
@@ -27,8 +28,8 @@ public class Airport {
         return false;
     }
 
-    public boolean addFlight(Flight f) {
-        return false;
+    public void addFlight(Flight f) {
+        flights.add(f);
     }
 
 

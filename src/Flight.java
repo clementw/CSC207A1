@@ -1,27 +1,37 @@
 import java.util.ArrayList;
 
 public class Flight {
+    String ls = System.lineSeparator();
     private String name;
     private ArrayList airports;
     private String date;
 
     public Flight(String name, String date) {
+        this.name = name;
+        this.date = date;
     }
 
     public String getName() {
-        return null;
+        return name;
     }
 
-    public Airport[] getAirports() {
-        return null;
+    public ArrayList getAirports() {
+        return airports;
     }
 
     public String getDate() {
-        return null;
+        return date;
     }
 
-    public String toString(Airport f) {
-        return null;
+    public String toString() {
+        String s = name + ", " + date;
+        if(airports.size() != 0){
+            s += ls;
+            for(int i = 0;i<airports.size();i++){
+                s = s + airports.get(i) + ls;
+            }
+        }
+        return "";
     }
 
     public boolean equals(Airport f) {
@@ -29,6 +39,10 @@ public class Flight {
     }
 
     public boolean wasVisitedBy(Airport f) {
+        if(airports.contains(f)){
+            return true;
+        }
+
         return false;
     }
 
@@ -36,7 +50,7 @@ public class Flight {
         return false;
     }
 
-    public boolean addAirport(Airport f) {
-        return false;
+    public void addAirport(Airport f) {
+        airports.add(f);
     }
 }
