@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 
 public class Flight {
-    String ls = System.lineSeparator();
     private String name;
     private ArrayList airports;
     private String date;
@@ -9,6 +8,18 @@ public class Flight {
     public Flight(String name, String date) {
         this.name = name;
         this.date = date;
+        this.airports = new ArrayList();
+    }
+
+    public String toString() {
+        String ls = System.lineSeparator();
+        String s = name + ", " + date;
+        if(airports != null && airports.size() != 0){
+            for(int i = 0;i<airports.size();i++){
+                s = s + ls + ((Airport) airports.get(i)).getName();
+            }
+        }
+        return s;
     }
 
     public String getName() {
@@ -23,34 +34,18 @@ public class Flight {
         return date;
     }
 
-    public String toString() {
-        String s = name + ", " + date;
-        if(airports.size() != 0){
-            s += ls;
-            for(int i = 0;i<airports.size();i++){
-                s = s + airports.get(i) + ls;
-            }
+    public boolean equals(Flight f) {
+        return this.name.equals(f.getName()) && this.date.equals(f.getDate());
+    }
+
+    public boolean wasVisitedBy(Airport a) {
+        return airports.contains(a);
+    }
+
+    public void addAirport(Airport a) {
+        airports.add(a);
+        if(!a.getFlights().contains(this)){
+            a.addFlight(this);
         }
-        return "";
-    }
-
-    public boolean equals(Airport f) {
-        return false;
-    }
-
-    public boolean wasVisitedBy(Airport f) {
-        if(airports.contains(f)){
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean onSameFlight(Airport f) {
-        return false;
-    }
-
-    public void addAirport(Airport f) {
-        airports.add(f);
     }
 }
