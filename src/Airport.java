@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Airport {
     private String name;
@@ -30,8 +31,12 @@ public class Airport {
     }
 
     public boolean equals(Airport a) {
-        ArrayList f1 = this.flights;
-        ArrayList f2 = a.getFlights();
+        Comparator<Flight> c = (Flight f1, Flight f2)->f1.getName().compareTo(f2.getName());
+        ArrayList f1 = new ArrayList(this.flights);
+        ArrayList f2 = new ArrayList(a.getFlights());
+
+        Collections.sort(f1, c);
+        Collections.sort(f2, c);
 
         return this.name.equals(a.getName()) && f1.equals(f2);
     }
